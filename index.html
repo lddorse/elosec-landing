@@ -645,40 +645,60 @@
         <div class="container">
             <h2 class="section-title">Simple, Transparent Pricing</h2>
             <p style="text-align: center; color: #b0b0b0; font-size: 18px; max-width: 700px; margin: 0 auto;">
-                No per-user fees. No hidden costs. Full enterprise security for one flat annual rate.
+                No per-user fees. No hidden costs. Save up to $149/year with annual billing.
             </p>
 
             <div class="pricing-cards">
                 <div class="pricing-card">
-                    <h3>Standard</h3>
-                    <div class="price">$299<span class="price-period">/year</span></div>
+                    <h3>Home</h3>
+                    <div class="price">$19<span class="price-period">/month</span></div>
+                    <p style="color: #00d4ff; font-size: 14px; margin-top: 10px;">$199/year (save $29)</p>
                     <ul class="pricing-features">
                         <li>Automated Threat Blocking</li>
-                        <li>Real-Time Monitoring Dashboard</li>
                         <li>Network-Wide Ad Blocking</li>
                         <li>Secure VPN Access</li>
-                        <li>Automated Nightly Backups</li>
+                        <li>Automated Backups</li>
+                        <li>Basic Monitoring Dashboard</li>
                         <li>UFW Firewall Protection</li>
                         <li>Email Support</li>
-                        <li>99% Uptime SLA</li>
                     </ul>
+                    <p style="color: #b0b0b0; font-size: 14px; margin-top: 20px; font-style: italic;">Perfect for gamers, home servers, tech enthusiasts</p>
                     <a href="#contact" class="cta-button">Get Started</a>
                 </div>
 
                 <div class="pricing-card featured">
                     <div class="pricing-badge">MOST POPULAR</div>
-                    <h3>Premium</h3>
-                    <div class="price">$499<span class="price-period">/year</span></div>
+                    <h3>Business</h3>
+                    <div class="price">$39<span class="price-period">/month</span></div>
+                    <p style="color: #00d4ff; font-size: 14px; margin-top: 10px;">$399/year (save $69)</p>
                     <ul class="pricing-features">
-                        <li>Everything in Standard</li>
-                        <li>Priority 24/7 Support</li>
-                        <li>Custom Security Policies</li>
+                        <li>Everything in Home</li>
+                        <li>Advanced Monitoring & Analytics</li>
+                        <li>Uptime Monitoring & Alerts</li>
+                        <li>Complete Audit Logs</li>
+                        <li>Priority Email Support</li>
                         <li>Monthly Security Reports</li>
-                        <li>Advanced Threat Analytics</li>
+                        <li>99% Uptime SLA</li>
+                    </ul>
+                    <p style="color: #b0b0b0; font-size: 14px; margin-top: 20px; font-style: italic;">Perfect for small businesses, offices, professionals</p>
+                    <a href="#contact" class="cta-button">Get Started</a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-badge" style="background: #ff4444;">ENTERPRISE</div>
+                    <h3>Premier</h3>
+                    <div class="price">$79<span class="price-period">/month</span></div>
+                    <p style="color: #00d4ff; font-size: 14px; margin-top: 10px;">$799/year (save $149)</p>
+                    <ul class="pricing-features">
+                        <li>Everything in Business</li>
                         <li>On-Site Setup & Training</li>
+                        <li>24/7 Priority Support</li>
+                        <li>Custom Security Policies</li>
                         <li>Quarterly Security Audits</li>
+                        <li>Compliance Documentation</li>
                         <li>99.9% Uptime SLA</li>
                     </ul>
+                    <p style="color: #b0b0b0; font-size: 14px; margin-top: 20px; font-style: italic;">Perfect for cannabis, law firms, healthcare</p>
                     <a href="#contact" class="cta-button">Get Started</a>
                 </div>
             </div>
@@ -686,7 +706,7 @@
             <div style="text-align: center; margin-top: 60px; padding: 40px; background: rgba(0, 212, 255, 0.05); border-radius: 15px;">
                 <h3 style="color: #00d4ff; font-size: 28px; margin-bottom: 15px;">ROI Guarantee</h3>
                 <p style="color: #fff; font-size: 18px; max-width: 600px; margin: 0 auto;">
-                    If Elo Sec prevents even ONE breach, it pays for itself 100x over. Average ransomware attack costs $50,000+. Our annual fee? Less than $500.
+                    If Elo Sec prevents even ONE breach, it pays for itself 100x over. Average ransomware attack costs $50,000+. Our Premier tier? Less than $800/year.
                 </p>
             </div>
         </div>
@@ -699,7 +719,7 @@
                 Schedule a free security assessment. See your real-time threat landscape. No obligation.
             </p>
 
-            <form class="contact-form" id="contactForm">
+            <form class="contact-form" id="contactForm" action="https://formspree.io/f/mrezgkpn" method="POST">
                 <div class="form-group">
                     <label for="name">Name *</label>
                     <input type="text" id="name" name="name" required>
@@ -747,13 +767,6 @@
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
-        });
-
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your interest! We will contact you within 24 hours.');
-            this.reset();
         });
     </script>
 </body>
