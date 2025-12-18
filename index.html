@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elo Sec - Enterprise Security for Small Business</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #0a0e27;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 30px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #00d4ff;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a1f3a 0%, #0a0e27 100%);
+            padding: 100px 0;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .hero .highlight {
+            color: #ff4444;
+            text-shadow: 0 0 20px rgba(255, 68, 68, 0.5);
+        }
+
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #b0b0b0;
+        }
+
+        .stat-box {
+            display: inline-block;
+            background: rgba(255, 68, 68, 0.1);
+            border: 2px solid #ff4444;
+            padding: 30px 50px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .stat-number {
+            font-size: 64px;
+            font-weight: bold;
+            color: #ff4444;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            color: #fff;
+            margin-top: 10px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: #fff;
+            padding: 18px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
+        }
+
+        /* Threat Data Section */
+        .threat-data {
+            padding: 80px 0;
+            background: #0f1426;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            color: #fff;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        .threat-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .threat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .threat-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff4444;
+        }
+
+        .threat-card .flag {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .threat-card h3 {
+            color: #ff4444;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .threat-card .attempts {
+            font-size: 36px;
+            font-weight: bold;
+            color: #00d4ff;
+            margin: 15px 0;
+        }
+
+        .threat-card p {
+            color: #b0b0b0;
+            font-size: 16px;
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 80px 0;
+            background: #1a1f3a;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .problem-item {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .problem-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .problem-item h3 {
+            color: #ff4444;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .problem-item p {
+            color: #b0b0b0;
+            font-size: 16px;
+        }
+
+        /* Solution Section */
+        .solution {
+            padding: 80px 0;
+            background: #0f1426;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 15px;
+            padding: 35px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 56px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            color: #00d4ff;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #b0b0b0;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 80px 0;
+            background: #1a1f3a;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .pricing-card.featured {
+            border-color: #00d4ff;
+            transform: scale(1.05);
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .pricing-badge {
+            background: #00d4ff;
+            color: #0a0e27;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .pricing-card h3 {
+            color: #fff;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 56px;
+            font-weight: bold;
+            color: #00d4ff;
+            margin: 20px 0;
+        }
+
+        .price-period {
+            font-size: 18px;
+            color: #b0b0b0;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            color: #b0b0b0;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pricing-features li:before {
+            content: "✓ ";
+            color: #00d4ff;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: #0f1426;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 50px auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #fff;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00d4ff;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0e27;
+            padding: 40px 0;
+            text-align: center;
+            color: #b0b0b0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .stat-number {
+                font-size: 48px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="logo">🛡️ Elo Sec</a>
+                <nav>
+                    <a href="#features">Features</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Your Network Could Be <span class="highlight">Under Attack</span> Right Now</h1>
+                <p>If you run public services, remote access, or business infrastructure - sophisticated botnets are probing your defenses 24/7</p>
+                
+                <div class="stat-box">
+                    <span class="stat-number">1,518</span>
+                    <span class="stat-label">Intrusion Attempts Blocked (Last 7 Days)</span>
+                </div>
+
+                <p style="margin-top: 30px;">Enterprise-grade security for small business. Automated. Proven. Affordable.</p>
+                <a href="#contact" class="cta-button">Protect Your Business →</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="threat-data">
+        <div class="container">
+            <h2 class="section-title">Real Threats. Real Protection.</h2>
+            <p style="text-align: center; color: #b0b0b0; font-size: 18px; max-width: 800px; margin: 0 auto;">
+                This is actual attack data from one of our systems over the past week. These coordinated botnet campaigns target businesses like yours every single day.
+            </p>
+
+            <div class="threat-cards">
+                <div class="threat-card">
+                    <div class="flag">🇷🇺</div>
+                    <h3>Russian Botnet #1</h3>
+                    <div class="attempts">687 Attempts</div>
+                    <p><strong>Location:</strong> St. Petersburg, Russia</p>
+                    <p><strong>Status:</strong> Permanently Banned</p>
+                    <p style="margin-top: 15px;">Systematic brute force attack targeting root access with automated credential testing.</p>
+                </div>
+
+                <div class="threat-card">
+                    <div class="flag">🇷🇺</div>
+                    <h3>Russian Botnet #2</h3>
+                    <div class="attempts">602 Attempts</div>
+                    <p><strong>Location:</strong> St. Petersburg, Russia</p>
+                    <p><strong>Status:</strong> Permanently Banned</p>
+                    <p style="margin-top: 15px;">Coordinated attack attempting common usernames and default credentials across multiple services.</p>
+                </div>
+
+                <div class="threat-card">
+                    <div class="flag">🇬🇧</div>
+                    <h3>UK-Based Attack</h3>
+                    <div class="attempts">222 Attempts</div>
+                    <p><strong>Location:</strong> Hertfordshire, UK</p>
+                    <p><strong>Status:</strong> Permanently Banned</p>
+                    <p style="margin-top: 15px;">Persistent intrusion attempts from compromised server targeting database and admin accounts.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px; padding: 30px; background: rgba(255, 68, 68, 0.1); border-radius: 15px;">
+                <h3 style="color: #ff4444; font-size: 28px; margin-bottom: 15px;">64 Automatic Bans Triggered</h3>
+                <p style="color: #fff; font-size: 18px;">Zero manual intervention. Zero successful breaches. 100% uptime.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="problem">
+        <div class="container">
+            <h2 class="section-title" style="color: #ff4444;">What Happens Without Protection?</h2>
+            
+            <div class="problem-grid">
+                <div class="problem-item">
+                    <div class="problem-icon">🔓</div>
+                    <h3>Data Breach</h3>
+                    <p>Customer data stolen and sold on the dark web. GDPR/HIPAA violations. Lawsuits. Reputation destroyed.</p>
+                </div>
+
+                <div class="problem-item">
+                    <div class="problem-icon">💰</div>
+                    <h3>Ransomware</h3>
+                    <p>Files encrypted. $50,000+ ransom demand. Business shutdown for weeks. No guarantee of data recovery.</p>
+                </div>
+
+                <div class="problem-item">
+                    <div class="problem-icon">🎯</div>
+                    <h3>Botnet Recruitment</h3>
+                    <p>Your network becomes part of the problem - attacking others. Your IP blacklisted. Legal liability.</p>
+                </div>
+
+                <div class="problem-item">
+                    <div class="problem-icon">📉</div>
+                    <h3>Business Impact</h3>
+                    <p>Downtime costs thousands per hour. Customer trust lost. Regulatory fines. Recovery takes months.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <p style="color: #fff; font-size: 22px; max-width: 700px; margin: 0 auto;">
+                    <strong>One successful breach from 1,518 attempts costs more than 10 years of protection.</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="solution" id="features">
+        <div class="container">
+            <h2 class="section-title">The Elo Sec Solution</h2>
+            <p style="text-align: center; color: #b0b0b0; font-size: 18px; max-width: 800px; margin: 0 auto 50px;">
+                Enterprise-grade security infrastructure deployed at your location. Fully managed. Always monitoring. Automatically protecting.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Automated Threat Blocking</h3>
+                    <p>Fail2ban automatically detects and bans attackers after 3 failed attempts. No manual intervention required.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Real-Time Monitoring</h3>
+                    <p>Grafana dashboards show live network activity, attack attempts, and system health 24/7.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Ad & Tracker Blocking</h3>
+                    <p>Pi-hole filters malicious domains and ads network-wide. Faster browsing, enhanced privacy.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>Secure VPN Access</h3>
+                    <p>WireGuard VPN for secure remote access. Work from anywhere with enterprise-level encryption.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3>Automated Backups</h3>
+                    <p>Nightly backups with 7-day retention. Quick recovery from any incident or hardware failure.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔥</div>
+                    <h3>UFW Firewall</h3>
+                    <p>Port-level access control. Only essential services exposed. Everything else locked down.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⏱️</div>
+                    <h3>Uptime Monitoring</h3>
+                    <p>Continuous health checks on all services. Instant alerts if anything goes down.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Complete Audit Trail</h3>
+                    <p>Every attack logged. Full compliance documentation. Prove your security posture.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Simple, Transparent Pricing</h2>
+            <p style="text-align: center; color: #b0b0b0; font-size: 18px; max-width: 700px; margin: 0 auto;">
+                No per-user fees. No hidden costs. Full enterprise security for one flat annual rate.
+            </p>
+
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Standard</h3>
+                    <div class="price">$299<span class="price-period">/year</span></div>
+                    <ul class="pricing-features">
+                        <li>Automated Threat Blocking</li>
+                        <li>Real-Time Monitoring Dashboard</li>
+                        <li>Network-Wide Ad Blocking</li>
+                        <li>Secure VPN Access</li>
+                        <li>Automated Nightly Backups</li>
+                        <li>UFW Firewall Protection</li>
+                        <li>Email Support</li>
+                        <li>99% Uptime SLA</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Get Started</a>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">MOST POPULAR</div>
+                    <h3>Premium</h3>
+                    <div class="price">$499<span class="price-period">/year</span></div>
+                    <ul class="pricing-features">
+                        <li>Everything in Standard</li>
+                        <li>Priority 24/7 Support</li>
+                        <li>Custom Security Policies</li>
+                        <li>Monthly Security Reports</li>
+                        <li>Advanced Threat Analytics</li>
+                        <li>On-Site Setup & Training</li>
+                        <li>Quarterly Security Audits</li>
+                        <li>99.9% Uptime SLA</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Get Started</a>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 60px; padding: 40px; background: rgba(0, 212, 255, 0.05); border-radius: 15px;">
+                <h3 style="color: #00d4ff; font-size: 28px; margin-bottom: 15px;">ROI Guarantee</h3>
+                <p style="color: #fff; font-size: 18px; max-width: 600px; margin: 0 auto;">
+                    If Elo Sec prevents even ONE breach, it pays for itself 100x over. Average ransomware attack costs $50,000+. Our annual fee? Less than $500.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Secure Your Business Today</h2>
+            <p style="text-align: center; color: #b0b0b0; font-size: 18px; max-width: 700px; margin: 0 auto;">
+                Schedule a free security assessment. See your real-time threat landscape. No obligation.
+            </p>
+
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Tell us about your security needs *</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-button">Request Free Assessment</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Elo Sec. Enterprise security for small business.</p>
+            <p style="margin-top: 10px;">Built and operated by Leo Dorsey | <a href="https://leodorsey.com" style="color: #00d4ff; text-decoration: none;">leodorsey.com</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your interest! We will contact you within 24 hours.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
