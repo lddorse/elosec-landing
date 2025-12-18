@@ -59,6 +59,56 @@
             color: #00d4ff;
         }
 
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            right: 0;
+            background: rgba(10, 14, 39, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0 0 0 15px;
+            z-index: 99;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: color 0.3s;
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu a:hover {
+            color: #00d4ff;
+        }
+
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, #1a1f3a 0%, #0a0e27 100%);
@@ -467,19 +517,33 @@
             nav {
                 display: none;
             }
+
+            .hamburger {
+                display: flex;
+            }
         }
     </style>
 </head>
-<body>
+<body id="top">
     <header>
         <div class="container">
             <div class="nav-container">
-                <a href="#" class="logo">🛡️ Elo Sec</a>
+                <a href="#top" class="logo">🛡️ Elo Sec</a>
                 <nav>
                     <a href="#features">Features</a>
                     <a href="#pricing">Pricing</a>
                     <a href="#contact">Contact</a>
                 </nav>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#contact">Contact</a>
             </div>
         </div>
     </header>
@@ -766,7 +830,14 @@
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
+                // Close mobile menu after click
+                document.getElementById('mobileMenu').classList.remove('active');
             });
+        });
+
+        // Mobile menu toggle
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.toggle('active');
         });
     </script>
 </body>
